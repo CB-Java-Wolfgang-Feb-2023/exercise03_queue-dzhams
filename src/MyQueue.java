@@ -6,43 +6,34 @@ public class MyQueue {
     public MyQueue(int SIZE) {
         this.SIZE = SIZE;
         queue = new int[SIZE];
-        //front = ...
-        //rear = ...
+        front = 0;
+        rear = -1;
     }
 
-    // check if the queue is full
     public boolean isFull() {
-        return false;
+        return (rear - front + 1) == SIZE;
     }
 
-    // check if the queue is empty
     public boolean isEmpty() {
-        return false;
+        return rear < front;
     }
 
-    // insert elements to the queue
     public void enqueue(int element) {
-
+        if (!isFull()) {
+            rear++;
+            queue[rear] = element;
+        } else {
+            System.out.println("Die Warteschlange ist voll. Element konnte nicht hinzugefügt werden.");
+        }
     }
 
-    // delete element from the queue
     public int dequeue() {
-        return 0;
+        if (!isEmpty()) {
+            int element = queue[front];
+            front++;
+            return element;
+        } else {
+            return -1; // Fehlercode für leere Warteschlange
+        }
     }
-
-    public int getFront() {
-        return front;
-    }
-
-    public int getRear() {
-        return rear;
-    }
-
-    @Override
-    public String toString() {
-        return "MyQueue{}";
-    }
-
 }
-
-
